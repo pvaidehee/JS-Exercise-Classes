@@ -41,8 +41,37 @@ class Airplane {
 */
 
 class Person {
-
+constructor (name, age){
+  this.name = name;
+this.age = age;
+ this.stomach = [];
 }
+eat(edible){
+  if (this.stomach.length < 10) {
+       this.stomach.push(edible);
+       }
+};
+poop() {
+     this.stomach = [];
+  };
+  tostring(){
+    return `${this.name}, ${this.age}`;
+  }
+}
+const personOne = new Person("Mary", 50);
+
+console.log(personOne.toString());
+
+personOne.eat("Tacos");
+personOne.eat("Pasta");
+personOne.eat("Spanich Manicotti");
+
+console.log(personOne.stomach);
+
+personOne.poop();
+
+console.log(personOne.stomach);
+
 
 /*
   TASK 2
@@ -59,8 +88,39 @@ class Person {
 */
 
 class Car {
-
+  constructor(model, milesPerGallon){
+    this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+  }
+fill(gallons){
+  this.tank += gallons;
 }
+drive(distance){
+  let dDistance = distance;
+  if (this.tank >= distance / this.milesPerGallon) {
+    while (distance != 0) {
+      this.odometer++;
+      distance--;
+}
+this.tank -= dDistance / this.milesPerGallon;
+} else {
+      this.odometer += dDistance - 1;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+}
+}
+
+const carOne = new Car({
+  model : "BMW",
+milesPerGallon : 20,
+tank : 10,
+odometer : 30,
+});
+
+console.log(model, milesPerGallon);
+
 
 /*
   TASK 3
@@ -75,7 +135,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+constructor(name, age, location){
+  this.name = name;
+  this.age = age;
+  this.location = location;
+}
+speak(){
+  return `Hello my name is ${this.name}, I am from${this.location}`
+}
 }
 
 /*
@@ -135,7 +202,8 @@ class ProjectManager {
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
-    - Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
+    - Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's)
+    that will randomly add or subtract points to a student's grade. _Math.random_ will help.
     - Add a graduate method to a student.
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
